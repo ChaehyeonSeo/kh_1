@@ -1,7 +1,5 @@
 package kr.co.demo;
 
-import org.graalvm.compiler.hotspot.IsGraalPredicate;
-
 public class Demo03 {
 
 	public static void main(String[] args) {
