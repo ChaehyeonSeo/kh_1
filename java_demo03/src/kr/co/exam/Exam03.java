@@ -31,8 +31,8 @@ public class Exam03 {
 		System.out.println("계좌번호를 입력하세요.");
 		String bankNum = sc.nextLine();
 		
-		System.out.printf("총 금액 %d 원을 %d 명이 나누어 인당 %d 원을 "
-				+ "다음의 계좌에 입금해 주세요. 나머지 금액 %d 원은 제가 부담할게요.\n"
+		System.out.printf("총 금액 %,d 원을 %d 명이 나누어 인당 %,d 원을 "
+				+ "다음의 계좌에 입금해 주세요. 나머지 금액 %,d 원은 제가 부담할게요.\n"
 				+ "입금 계좌 : %s", total, people, (total/people), (total%people), bankNum);
 	}
 
