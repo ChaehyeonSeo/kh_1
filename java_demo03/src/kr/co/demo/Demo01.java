@@ -35,13 +35,13 @@ public class Demo01 {
 		
 		System.out.println("논리 연산 true && true 결과 -> " + (b1 && b1));
 		System.out.println("논리 연산 true && false 결과 -> " + (b1 && b2));
-		System.out.println("논리 연산 false && true 결과 -> " + (b2 && b1));
 		System.out.println("논리 연산 false && false 결과 -> " + (b2 && b2));
+		System.out.println("논리 연산 false && true 결과 -> " + (b2 && b1));
 		
 		System.out.println("논리 연산 true || true 결과 -> " + (b1 || b1));
 		System.out.println("논리 연산 true || false 결과 -> " + (b1 || b2));
-		System.out.println("논리 연산 false || true 결과 -> " + (b2 || b1));
 		System.out.println("논리 연산 false || false 결과 -> " + (b2 || b2));
+		System.out.println("논리 연산 false || true 결과 -> " + (b2 || b1));
 		
 //		증감연산
 		int z1 = 10;

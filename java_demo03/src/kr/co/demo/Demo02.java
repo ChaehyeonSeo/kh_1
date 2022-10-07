@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Demo02 {
 
 	public static void main(String[] args) {
-//		사용자 입력 -> Scanner 클래스
+//		사용자 입력 - Scanner 클래스
 		Scanner sc = new Scanner(System.in);
 		
 //		정수값을 입력 받아서 변수 x1에 저장
