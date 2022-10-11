@@ -70,13 +70,28 @@ public class Demo04 {
 //		}
 		
 //		1 ~ n 까지의 범위에서 m의 배수에 해당하는 값만 출력
-		int n = 100;
-		int m = 2;
-		for(int x7 = 1; x7 <= n; x7++) {
-			if(x7 % m == 0) {
-				System.out.printf("%d\n", x7);
+//		int n = 100;
+//		int m = 2;
+//		for(int x7 = 1; x7 <= n; x7++) {
+//			if(x7 % m == 0) {
+//				System.out.printf("%d\n", x7);
+//			}
+//		}
+		
+//		누적합을 구하기 위한 반복문
+		int sum = 0;
+		for(int x8 = 1; x8 <= 10; x8++) {
+			sum += x8;
+		}
+		System.out.printf("1 ~ 10까지의 누적합은 %d입니다.\n", sum);
+		
+		int sum2 = 0;
+		for(int x8 = 1; x8 <= 100; x8++) {
+			if (x8 % 2 == 0) {
+				sum2 += x8;
 			}
 		}
+		System.out.printf("1 ~ 100까지의 짝수에 대한 누적합은 %d입니다.\n", sum2);
 	}
 
 }
