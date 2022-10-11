@@ -70,7 +70,8 @@ public class Demo01 {
 		
 		System.out.println("프로그램이 종료됩니다.");
 		*/
-
+		
+		/*
 		int x4 = 5;
 		
 		if (x4 < 10) {
@@ -81,6 +82,23 @@ public class Demo01 {
 		} 
 		if (x4 < 30) {
 			System.out.println("변수 x3에 저장된 값은 20 이상이지만 30보다는 작습니다.");
+		}
+		
+		System.out.println("프로그램이 종료됩니다.");
+		*/
+		
+		int x5 = 6;
+		
+		if (x5 > 10) {
+			if (x5 % 2 == 0) {
+				System.out.println("변수 x5에 저장된 값은 10보다 크고 짝수입니다.");
+			} else {
+				System.out.println("변수 x5에 저장된 값은 10보다 크고 홀수입니다.");
+			}
+		} else {
+			if(x5 % 2 ==0) {
+				System.out.println("변수 x5에 저장된 값은 10 미만이고 짝수입니다.");
+			}
 		}
 		
 		System.out.println("프로그램이 종료됩니다.");
