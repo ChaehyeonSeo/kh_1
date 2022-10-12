@@ -79,19 +79,34 @@ public class Demo04 {
 //		}
 		
 //		누적합을 구하기 위한 반복문
-		int sum = 0;
-		for(int x8 = 1; x8 <= 10; x8++) {
-			sum += x8;
-		}
-		System.out.printf("1 ~ 10까지의 누적합은 %d입니다.\n", sum);
+//		int sum = 0;
+//		for(int x8 = 1; x8 <= 10; x8++) {
+//			sum += x8;
+//		}
+//		System.out.printf("1 ~ 10까지의 누적합은 %d입니다.\n", sum);
+//		
+//		int sum2 = 0;
+//		for(int x8 = 1; x8 <= 100; x8++) {
+//			if (x8 % 2 == 0) {
+//				sum2 += x8;
+//			}
+//		}
+//		System.out.printf("1 ~ 100까지의 짝수에 대한 누적합은 %d입니다.\n", sum2);
 		
-		int sum2 = 0;
-		for(int x8 = 1; x8 <= 100; x8++) {
-			if (x8 % 2 == 0) {
-				sum2 += x8;
+//		큰값 ~ 작은값으로 감소하는 형식의 반복문
+//		for(int x9 = 10; x9 >= 1; x9--) {
+//			System.out.printf("%d\n", x9);
+//		}
+		
+//		중첩 반복문
+		for(int i = 1; i <= 9; i++) {
+			for(int j = 1; j <= 9; j++) {
+				System.out.printf("%d X %d = %d\t", j, i, j*i);
 			}
+			System.out.println();
 		}
-		System.out.printf("1 ~ 100까지의 짝수에 대한 누적합은 %d입니다.\n", sum2);
+		
+		
 	}
 
 }
