@@ -13,13 +13,13 @@ public class Exam05 {
 		System.out.println("1번");
 		Random random = new Random();
 		int arr1[] = new int[10];
-		
+
 		for(int i = 0; i < arr1.length; i++) {
 			arr1[i] = random.nextInt(101);
 			System.out.printf("%d\t", arr1[i]);
 		}
 		System.out.println();
-		
+
 		/* 
 		 * 2.	1번에서 생성한 배열을 그대로 사용하여 배열 안에 있는
 		 * 		정수값 중 짝수에 해당하는 값만 분류하여 출력.
@@ -34,7 +34,7 @@ public class Exam05 {
 			}
 		}
 		System.out.println("\n짝수값의 수량은 " + count);
-		
+
 		/* 
 		 * 3.	2번에 의해 분류된 짝수들만을 모아두기 위한 새로운 정수
 		 * 		배열을 만들고 저장
