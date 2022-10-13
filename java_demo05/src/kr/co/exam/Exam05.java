@@ -40,15 +40,16 @@ public class Exam05 {
 		 * 		배열을 만들고 저장
 		 */
 		System.out.println("3번");
-		int arr2[] = new int[count];
+		int even[] = new int[count];
 		for(int i = 0, j = 0; i < arr1.length; i++) {
 			if(arr1[i] % 2 == 0) {
-				arr2[j] = arr1[i];
+				even[j] = arr1[i];
 				j++;
 			} 
 		}
-		for(int k = 0; k < arr2.length; k++) {
-			System.out.printf("%d\t", arr2[k]);
+		for(int k = 0; k < even.length; k++) {
+			System.out.printf("%d\t", even[k]);
 		}
+		System.out.println();
 	}
 }
