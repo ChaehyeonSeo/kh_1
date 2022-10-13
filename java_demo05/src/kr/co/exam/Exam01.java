@@ -17,10 +17,10 @@ public class Exam01 {
 //		배열 크기가 5인 정수 배열을 만들고 5부터 -1씩 
 //		감소된 값으로 초기화한 후 출력하세요.
 		int arr2[] = new int[5];
-		int j = 5;
-		while(j > 0) {
-			arr2[5-j] = j;
-			j--;
+		int j = 0;
+		while(j < arr2.length) {
+			arr2[j] = arr2.length - j;
+			j++;
 		}
 		for(int k = 0; k < arr2.length; k++) {
 			System.out.print(arr2[k] + "\t");
