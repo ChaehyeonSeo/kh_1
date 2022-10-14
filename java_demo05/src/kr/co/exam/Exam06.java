@@ -1,5 +1,6 @@
 package kr.co.exam;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Exam06 {
@@ -20,11 +21,18 @@ public class Exam06 {
 			int num = random.nextInt(101);
 			if (num % 2 == 1) {
 				tmp = new int[odd.length + 1];
-				for(int j = 0; j < odd.length; j++) {
-					tmp[j] = odd[j];
-				}
+//				for(int j = 0; j < odd.length; j++) {
+//					tmp[j] = odd[j];
+//				}					
+//							or
+//				System.arraycopy(odd, 0, tmp, 0, odd.length);
+//							or
+				tmp = Arrays.copyOf(odd, odd.length + 1);
+				
 				tmp[tmp.length - 1] = num;
-				odd = tmp;
+				odd = tmp;		
+//							or
+//				odd[odd.length - 1] = num;
 			}
 		}
 		for(int i = 0; i < odd.length; i++) {
