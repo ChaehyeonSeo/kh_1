@@ -1,7 +1,5 @@
 package kr.co.exam05;
 
-//import java.util.Scanner;
-
 public class Elevator {
 	
 //	멤버변수
