@@ -13,7 +13,6 @@ public class Exam {
 		 */
 		
 		Clock c1 = new Clock(15, 12, 30);
-		
 		System.out.println(c1.getTimeString());
 	}
 
