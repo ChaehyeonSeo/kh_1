@@ -7,6 +7,7 @@ public class Elevator {
 	private int minFloor;
 	private int maxFloor;
 	private int changeFloor;
+	private String state;
 	
 //	생성자
 	public Elevator(int maxFloor) {
@@ -18,36 +19,18 @@ public class Elevator {
 	}
 	
 //	이동 메서드
-//	public void moveFloor(int changeFloor) {
-//		if (changeFloor <= maxFloor && changeFloor >= minFloor) {
-//			if (floor == changeFloor) {
-//				System.out.println("현재층에서 이동이 없습니다.");
-//			} else if (floor < changeFloor) {
-//				this.floor = changeFloor; 
-//				System.out.println("현재층에서 " + changeFloor + "층으로 올라갑니다.");
-//			} else {
-//				this.floor = changeFloor; 
-//				System.out.println("현재층에서 " + changeFloor + "층으로 내려갑니다.");
-//			}
-//		} else {
-//			changeFloor = 1;
-//			System.out.println("이동할 수 없습니다. 현재층에서 " + changeFloor + "층으로 내려갑니다.");
-//		}
-//	}
-	public String moveFloor(int changeFloor) {
+	public void moveFloor(int changeFloor) {
 		if (changeFloor <= maxFloor && changeFloor >= minFloor) {
+			this.state = this.floor < changeFloor ? "올라" : "내려";
 			if (floor == changeFloor) {
-				return "현재층에서 이동이 없습니다.";
-			} else if (floor < changeFloor) {
-				this.floor = changeFloor; 
-				return "현재층에서 " + changeFloor + "층으로 올라갑니다.";
+				System.out.println(this.floor + "층에서 이동이 없습니다.");
 			} else {
+				System.out.println(this.floor + "층에서 " + changeFloor + "층으로 " + this.state + "갑니다.");
 				this.floor = changeFloor; 
-				return "현재층에서 " + changeFloor + "층으로 내려갑니다.";
 			}
 		} else {
 			changeFloor = 1;
-			return "현재층에서 " + changeFloor + "층으로 내려갑니다.";
+			System.out.println("이동할 수 없습니다. " + changeFloor + "층으로 갑니다.");
 		}
 	}
 }
