@@ -11,15 +11,6 @@ public class Score {
 		this.setLevel();
 	}
 	
-	public void setResult(double result) {
-		this.result = result;
-		this.setLevel();
-	}
-	
-	public double getResult() {
-		return this.result;
-	}
-	
 //	점수로 등급을 산출하는 메서드
 	public void setLevel() {
 		switch ((int)(this.result / 10)) {
@@ -37,7 +28,4 @@ public class Score {
 		}
 	}
 	
-	public char getLevel() {
-		return this.level;
-	}
 }
