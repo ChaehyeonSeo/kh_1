@@ -2,19 +2,18 @@ package kr.co.exam06;
 
 import java.util.Arrays;
 
-public class FoodMenu {
+public class FoodMenu2 {
 //	멤버 변수
-	private String menu[] = new String[0];
-	private int price[] = new int[0];
+	private Food food[] = new Food[0];
 	
 //	생성자
-	public FoodMenu() {}
+	public FoodMenu2() {}
 	
 //	메뉴 출력 메서드
 	public String printMenu() {
 		String res = "";
-		for(int i = 0; i < this.menu.length; i++) {
-			res += String.format("%s\t%,d원\n", menu[i], price[i]);
+		for(int i = 0; i < this.food.length; i++) {
+			res += String.format("%s\t%,d원\n", this.food[i].name, this.food[i].price);
 		}
 		return res;
 	}
@@ -22,8 +21,8 @@ public class FoodMenu {
 //	메뉴의 위치 찾기 메서드
 	private int findIndex(String food) {
 		int idx = -1;
-		for(int i = 0; i < this.menu.length; i++) {
-			if (food.equals(this.menu[i])) {
+		for(int i = 0; i < this.food.length; i++) {
+			if (food.equals(this.food[i].name)) {
 				idx = i;
 				break;
 			}
@@ -39,15 +38,13 @@ public class FoodMenu {
 	 * @return : 메뉴에 대한 가격을 반환
 	 */
 	public int findMenu(String food) {
-		return price[this.findIndex(food)];
+		return this.food[this.findIndex(food)].price;
 	}
 	
 //	음식 추가 메서드
 	public void addMenu(String addName, int addPrice) {
-		this.menu = Arrays.copyOf(menu, menu.length + 1);
-		this.price = Arrays.copyOf(price, price.length + 1);
-		menu[menu.length - 1] = addName;
-		price[price.length - 1] = addPrice;
+		this.food = Arrays.copyOf(this.food, this.food.length + 1);
+		this.food[this.food.length - 1] = new Food(addName, addPrice);
 	}
 	
 //	음식 수정 메서드
@@ -64,7 +61,7 @@ public class FoodMenu {
 	public boolean changeMenu(String food, int rePrice) {
 		int idx = this.findIndex(food);
 		if(idx != -1) {
-			this.price[idx] = rePrice;
+			this.food[idx].price = rePrice;
 			return true;
 		}
 		return false;
@@ -74,15 +71,9 @@ public class FoodMenu {
 	public boolean deleteMenu(String food) {
 		int idx = this.findIndex(food);
 		if (idx != -1) {
-			for(int i = idx; i < this.menu.length -1; i++) {
-				this.menu[i] = this.menu[i+1];
-				this.menu = Arrays.copyOf(this.menu, this.menu.length - 1);
-				this.price = Arrays.copyOf(this.price, this.price.length - 1);
-			}
-			for(int i = idx; i < this.price.length -1; i++) {
-				this.price[i] = this.price[i+1];
-				this.menu = Arrays.copyOf(this.menu, this.menu.length - 1);
-				this.price = Arrays.copyOf(this.price, this.price.length - 1);
+			for(int i = idx; i < this.food.length -1; i++) {
+				this.food[i] = this.food[i+1];
+				this.food = Arrays.copyOf(this.food, this.food.length - 1);
 			}
 			return true;
 		}
