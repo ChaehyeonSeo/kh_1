@@ -1,7 +1,5 @@
 package kr.co.exam07;
 
-import kr.co.demo02.subject.Subject;
-
 public class Exam {
 
 	public static void main(String[] args) {
