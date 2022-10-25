@@ -9,7 +9,6 @@ public class Employee {
 	
 	public Employee() {}
 	public Employee(String name, int age) {
-		this();
 		setName(name);
 		setAge(age);
 	}

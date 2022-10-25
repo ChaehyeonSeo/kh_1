@@ -20,4 +20,12 @@ public class Staff extends Intern {
 	public void careIntern() {
 		System.out.println(role + getName() + "님이 인턴을 봐줍니다.");
 	}
+	
+	@Override
+	public Employee elevate() {
+		return new AssistantManager(getName(), getAge());
+	}
+	public Employee degreement() {
+		return new Intern(getName(), getAge());
+	}
 }

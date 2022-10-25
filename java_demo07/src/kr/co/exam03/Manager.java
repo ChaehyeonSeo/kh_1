@@ -20,4 +20,7 @@ public class Manager extends AssistantManager {
 	public void callClient() {
 		System.out.println(role + getName() + "님이 업체와 통화합니다.");
 	}
+	public Employee degreement() {
+		return new AssistantManager(getName(), getAge());
+	}
 }

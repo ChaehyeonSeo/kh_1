@@ -54,15 +54,9 @@ public class Exam {
 			}
 		}
 		
-//		Intern i1 = (Intern)e1;
-//		Staff s1 = (Staff)e2;
-//		AssistantManager a1 = (AssistantManager)e3;
-//		Manager m1 = (Manager)e4;
-//		
-//		i1.workOn();
-//		m1.callClient();
-//		e2.lunch();
-//		
+		System.out.println(e1);
+		e1 = ((Intern)e1).elevate();
+		System.out.println(e1);
 		
 	}
 

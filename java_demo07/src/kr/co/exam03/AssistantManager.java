@@ -23,4 +23,12 @@ public class AssistantManager extends Staff {
 	public void checkDocument() {
 		System.out.println(role + getName() + "님이 문서를 검토합니다.");
 	}
+	
+	@Override
+	public Employee elevate() {
+		return new Manager(getName(), getAge());
+	}
+	public Employee degreement() {
+		return new Staff(getName(), getAge());
+	}
 }
