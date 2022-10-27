@@ -17,7 +17,6 @@ public class Exam {
 		 */
 		Scanner sc = new Scanner(System.in);
 		String input, output;
-		boolean isNumber = true;
 		loop1:
 		while (true) {
 			System.out.println("전화번호를 아래와 같은 양식으로 입력하세요.");
