@@ -17,20 +17,44 @@ public class Exam {
 		 */
 		Scanner sc = new Scanner(System.in);
 		String input, output;
-		
+		boolean isNumber = true;
+		loop1:
 		while (true) {
 			System.out.println("전화번호를 아래와 같은 양식으로 입력하세요.");
 			System.out.println("010-xxxx-xxxx");
 			System.out.print("입력 : ");
 			input = sc.nextLine();
+			String phoneArr[] = input.split("-");
+			
 			if(!(input.startsWith("010-"))) {
-				continue;
-			} else {
-				output = input.substring(0, 9) + "****";
+				System.out.println("양식에 맞게 다시 입력하세요.");
 				break;
 			}
+			if(input.length() != 13) {
+				System.out.println("양식에 맞게 다시 입력하세요.");
+				break;
+			}
+			if(input.split("-")[1].length() != 4) {
+				System.out.println("양식에 맞게 다시 입력하세요.");
+				break;
+			}
+			if(input.split("-").length != 3) {
+				System.out.println("양식에 맞게 다시 입력하세요.");
+				break;
+			}
+			for(int i = 1; i < phoneArr.length; i++) {
+					for(int j = 0; j < phoneArr[i].length(); j++) {
+						if (!(phoneArr[i].charAt(j) >= '0' && phoneArr[i].charAt(j) <= '9')) {
+							System.out.println("양식에 맞게 다시 입력하세요.");
+							break loop1;
+						} 
+					}
+				}
+			output = input.substring(0, 9) + "****";
+			System.out.println("출력 : " + output);
+			break;
+			}
 		}
-		System.out.println("출력 : " + output);
 	}
 
-}
+
