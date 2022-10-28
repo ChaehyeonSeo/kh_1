@@ -65,7 +65,6 @@ public class Exam {
 		
 		Scanner sc = new Scanner(System.in);
 		
-//		
 		Calendar today = Calendar.getInstance();
 		int birthYear = 0, birthMonth = 0, birthDate = 0;
 		while (true) {
@@ -75,32 +74,27 @@ public class Exam {
 				birthYear = Integer.parseInt(input.substring(0, 4));
 				birthMonth = Integer.parseInt(input.substring(4, 6));
 				birthDate = Integer.parseInt(input.substring(6, 8));
-				for(int i = 0; i < 1500; i++) {
-					if (birthDate == today.get(Calendar.DATE) && birthMonth == today.get(Calendar.MONTH) + 1) {
-						System.out.println(i);
-						break;
-					} else {
-						today.add(Calendar.DATE, 1);
-					}
-				}
-				break;
 			} else if (input.length() == 6) {
 				birthYear = Integer.parseInt(input.substring(0, 2));
 				birthMonth = Integer.parseInt(input.substring(2, 4));
 				birthDate = Integer.parseInt(input.substring(4, 6));	
-				for(int i = 0; i < 1500; i++) {
-					if (birthDate == today.get(Calendar.DATE) && birthMonth == today.get(Calendar.MONTH) + 1) {
-						System.out.println(i);
-						break;
-					} else {
-						today.add(Calendar.DATE, 1);
-					}
-				}
-				break;
 			} else {
 				System.out.println("잘못된 형식입니다.");
 				continue;
 			}
+			for(int i = 0; i < 1500; i++) {
+				if (birthDate == today.get(Calendar.DATE) && birthMonth == today.get(Calendar.MONTH) + 1) {
+					System.out.println(i);
+					break;
+				} else {
+					today.add(Calendar.DATE, 1);
+				}
+				if (i == 1499) {
+					System.out.println("잘못된 형식입니다.");
+					break;
+				}
+			}
+			break;
 			
 		}
 		
