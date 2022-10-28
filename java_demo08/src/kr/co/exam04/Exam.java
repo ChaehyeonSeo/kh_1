@@ -40,17 +40,21 @@ public class Exam {
 		/* 
 		 * 	2022년 10월 중 주말에 해당하는 날짜만 문자열 배열에 담아 출력하세요.
 		 */
-		int[] weekend = new int[0];
+		SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+		Date[] weekend = new Date[0];
 		GregorianCalendar gc = new GregorianCalendar(2022, 9, 1);
 		for(int i = 0; i < gc.getMaximum(Calendar.DAY_OF_MONTH); i++) {
 			int gcDay = gc.get(Calendar.DAY_OF_WEEK);
 			if (gcDay == 1 || gcDay == 7) {
 				weekend = Arrays.copyOf(weekend, weekend.length + 1);
-				weekend[weekend.length-1] = gc.get(Calendar.DATE);
+				weekend[weekend.length-1] = gc.getTime();
 			}
 			gc.add(Calendar.DATE, 1);
 		}
 		System.out.println(Arrays.toString(weekend));
+		for (int i = 0; i < weekend.length; i++) {
+			System.out.println(df.format(weekend[i]));
+		}
 		
 		/* 
 		 * 	자신의 생년월일을 입력하면 현재로부터 몇일 남았는지 알려주는 D-DAY 정보를 출력하세요.
@@ -60,20 +64,44 @@ public class Exam {
 		 */
 		
 		Scanner sc = new Scanner(System.in);
-		System.out.println("생년월일을 yyyy/MM/dd의 형태로 입력하세요.");
-		String input = sc.nextLine();
 		
-		SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-		Date birthDay = df.parse(input);
+//		
 		Calendar today = Calendar.getInstance();
-		
-		for(int i = 0; i < 365; i++) {
-			if (birthDay.getDate() == today.get(Calendar.DATE) && birthDay.getMonth() == today.get(Calendar.MONTH)) {
-				System.out.println(i);
+		int birthYear = 0, birthMonth = 0, birthDate = 0;
+		while (true) {
+			System.out.println("생년월일을 입력하세요.");
+			String input = sc.nextLine();
+			if (input.length() == 8) {
+				birthYear = Integer.parseInt(input.substring(0, 4));
+				birthMonth = Integer.parseInt(input.substring(4, 6));
+				birthDate = Integer.parseInt(input.substring(6, 8));
+				for(int i = 0; i < 1500; i++) {
+					if (birthDate == today.get(Calendar.DATE) && birthMonth == today.get(Calendar.MONTH) + 1) {
+						System.out.println(i);
+						break;
+					} else {
+						today.add(Calendar.DATE, 1);
+					}
+				}
+				break;
+			} else if (input.length() == 6) {
+				birthYear = Integer.parseInt(input.substring(0, 2));
+				birthMonth = Integer.parseInt(input.substring(2, 4));
+				birthDate = Integer.parseInt(input.substring(4, 6));	
+				for(int i = 0; i < 1500; i++) {
+					if (birthDate == today.get(Calendar.DATE) && birthMonth == today.get(Calendar.MONTH) + 1) {
+						System.out.println(i);
+						break;
+					} else {
+						today.add(Calendar.DATE, 1);
+					}
+				}
 				break;
 			} else {
-				today.add(Calendar.DATE, 1);
+				System.out.println("잘못된 형식입니다.");
+				continue;
 			}
+			
 		}
 		
 	}
