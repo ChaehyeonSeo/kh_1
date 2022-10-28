@@ -117,6 +117,23 @@ public class BirthDay {
 		return String.format("%1$tY년 %1$tm월 %1$td일", new Date());
 	}
 	
+	/**
+	 * 만 나이를 구하여 반환한다.
+	 * @return int : 만 나이
+	 */
+	public int getAge() {
+		return 0;
+	}
+	
+	/**
+	 * zeroStart가 true이면, 만 나이를 구하여 반환하고</br>
+	 * zeroStart가 false이면, 세는 나이를</br> 구하여 반환한다.
+	 * @return int : zeroStart 값에 따라 만 나이 혹은 세는 나이
+	 */
+	public int getAge(boolean ) {
+		
+	}
+	
 	@Override
 	public String toString() {
 		return String.format("%1$tY년 %1$tm월 %1$td일", this.date);
