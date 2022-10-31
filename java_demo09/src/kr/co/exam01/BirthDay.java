@@ -33,8 +33,10 @@ public class BirthDay {
 		}
 		try {
 			this.date = this.dateFormat.parse(dateFormat);
+			this.dateSplit();
 		} catch (ParseException e) {
 			this.date = new Date();
+			this.dateSplit();
 			e.printStackTrace();
 		}
 	}
@@ -48,6 +50,9 @@ public class BirthDay {
 	 */
 	public BirthDay(int year, int month, int date) {
 		this.date = (new GregorianCalendar(year, month-1, date)).getTime();
+		this.year = year;
+		this.month = month;
+		this.day = date;
 	}
 	
 	/**
@@ -56,6 +61,7 @@ public class BirthDay {
 	 */
 	public BirthDay(Date date) {
 		this.date = date;
+		this.dateSplit();
 	}
 	
 	/**
@@ -65,6 +71,7 @@ public class BirthDay {
 	 */
 	public BirthDay(long milliSecond) {
 		this.date = new Date(milliSecond);
+		this.dateSplit();
 	}
 	
 	/**
@@ -74,6 +81,16 @@ public class BirthDay {
 	 */
 	private void setDateFormat(String format) {
 		this.dateFormat = new SimpleDateFormat(format);
+	}
+	
+	/**
+	 * Date 객체로 생성한 날짜를 year, month, day로 분리하여 
+	 * 멤버 변수로 저장 후 차후 다른 계산에 사용하기 위해 만듦.
+	 */
+	private void dateSplit() {
+		this.year = Integer.parseInt(String.format("%tY", this.date));
+		this.month = Integer.parseInt(String.format("%tm", this.date));
+		this.day = Integer.parseInt(String.format("%td", this.date));
 	}
 	
 	/**
@@ -122,16 +139,36 @@ public class BirthDay {
 	 * @return int : 만 나이
 	 */
 	public int getAge() {
-		return 0;
+		Date now = new Date();
+		int nowYear = Integer.parseInt(String.format("%tY", now));
+		int nowMonth = Integer.parseInt(String.format("%tm", now));
+		int nowDay = Integer.parseInt(String.format("%td", now));
+		int age = nowYear - this.year;
+		if (nowMonth <= this.month) {
+			if (nowMonth == this.month && nowDay < this.day) {
+				age -= 1;
+			}
+		}
+		return age;
 	}
 	
 	/**
 	 * zeroStart가 true이면, 만 나이를 구하여 반환하고</br>
-	 * zeroStart가 false이면, 세는 나이를</br> 구하여 반환한다.
+	 * zeroStart가 false이면, 세는 나이를</br>
+	 * 구하여 반환한다.
 	 * @return int : zeroStart 값에 따라 만 나이 혹은 세는 나이
 	 */
-	public int getAge(boolean ) {
-		
+	public int getAge(boolean zeroStart) {
+		Date now = new Date();
+		int nowYear = Integer.parseInt(String.format("%tY", now));
+		int nowMonth = Integer.parseInt(String.format("%tm", now));
+		int nowDay = Integer.parseInt(String.format("%td", now));
+		int age = this.getAge();
+		if (zeroStart) {
+			return age;
+		} else {
+			return nowYear - this.year + 1;
+		}
 	}
 	
 	@Override

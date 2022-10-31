@@ -95,9 +95,41 @@ public class Exam {
 				}
 			}
 			break;
-			
 		}
 		
+//		or
+		
+//			- 현재 월의 남은 일 수 -> A
+//			- 다음 월부터 생일 전달까지의 모든 일 수 -> B
+//			- 생일인 달의 1일부터 생일까지의 일 수 -> C
+//			- A + B + C -> D-Day
+		System.out.println("생년월일을 입력하세요.");
+		String input = sc.nextLine();
+		
+		if (input.length() == 8) {
+			birthYear = Integer.parseInt(input.substring(0, 4));
+			birthMonth = Integer.parseInt(input.substring(4, 6));
+			birthDate = Integer.parseInt(input.substring(6, 8));
+		} else if (input.length() == 6) {
+			birthYear = Integer.parseInt(input.substring(0, 2));
+			birthMonth = Integer.parseInt(input.substring(2, 4));
+			birthDate = Integer.parseInt(input.substring(4, 6));
+		}
+		
+		System.out.printf("당신이 태어난 날은 %d년 %월 %d일 입니다.\n", birthYear, birthMonth, birthDate);
+		
+		GregorianCalendar cNow = new GregorianCalendar();
+		GregorianCalendar cBirthDay = new GregorianCalendar(cNow.get(Calendar.YEAR), birthMonth - 1, birthDate);
+		SimpleDateFormat df3 = new SimpleDateFormat("yyyy년 MM월 dd일");
+		
+		int nowMonth = cNow.get(Calendar.MONTH) + 1;
+		int nowDate = cNow.get(Calendar.DATE);
+		
+		if (nowMonth > birthMonth) {
+			cBirthDay.add(Calendar.YEAR, 1);
+		} else if (nowMonth == birthMonth && nowDate > birthDate) {
+			cBirthDay.add(Calendar.YEAR, 1);
+		}
 	}
 	
 }

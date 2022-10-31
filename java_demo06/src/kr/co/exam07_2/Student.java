@@ -18,9 +18,16 @@ public class Student {
 	
 	public String getGradeTable() {
 		String result = "";
+		String colName = "\t";
+		String rowScore = "점수\t";
+		String rowGrade = "등급\t";
+		double sum = 0;
 		for(int i = 0; i < this.subjects.length; i++) {
 			Subject s = this.subjects[i];
-			result += String.format("%s\t%.2f\n", s.getName(), s.getScore());
+			colName += String.format("%s\t", s.getName());
+			rowScore += String.format("%.1f\t", s.getScore());
+			rowGrade += String.format("%c\t", s.getGrade());
+			sum += s.getScore();
 		}
 		return result;
 	}
