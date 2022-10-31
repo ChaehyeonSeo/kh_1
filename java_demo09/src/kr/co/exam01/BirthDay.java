@@ -49,6 +49,12 @@ public class BirthDay {
 	 * @param date : 태어난 일자
 	 */
 	public BirthDay(int year, int month, int date) {
+		if(!(month >= 1 && month <= 12)) {
+			throw new MonthRangeException(month + "월은 잘못된 월입니다.");
+		}
+		if (!(date >= 1 && date <= 31)) {
+			throw new DayRangeException(date + "일은 잘못된 일자입니다.");
+		}
 		this.date = (new GregorianCalendar(year, month-1, date)).getTime();
 		this.year = year;
 		this.month = month;
