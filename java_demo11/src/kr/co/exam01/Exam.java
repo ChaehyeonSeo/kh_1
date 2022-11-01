@@ -17,7 +17,7 @@ public class Exam {
 	 * 	  - 총 6개의 정수값이 리스트에 저장될 수 있도록 한다.
 	 * 	  - 마지막에 출력할 때 오름차순으로 정렬이 되도록 한다.
 	 */
-	private static String getLotto() {
+	private static ArrayList<Integer> getLotto() {
 		Random random = new Random();
 		ArrayList<Integer> lottoList = new ArrayList<Integer>();
 
@@ -29,8 +29,7 @@ public class Exam {
 			}
 		}
 		Collections.sort(lottoList);
-		String lotto = lottoList.toString();
-		return lotto;
+		return lottoList;
 	}
 
 	public static void main(String[] args) {
@@ -52,7 +51,7 @@ public class Exam {
 		try (FileWriter fw = new FileWriter(f, true)) {
 
 			for(int i = 0; i < count; i++) {
-				fw.write(getLotto());
+				fw.write(getLotto().toString());
 				fw.write("\n");
 			}
 
