@@ -44,7 +44,7 @@ public class Server {
 				System.out.println("클라이언트와 연결되었습니다.");
 				System.out.println("연결된 클라이언트의 주소는 " + clientIp + "입니다.");
 				
-				String recv = new String(dPacket.getData(), 0, dPacket.getData().length);
+				String recv = new String(dPacket.getData(), 0, dPacket.getLength());
 				System.out.println("클라이언트(" + clientIp + ")가 보낸 메시지 : " + recv);
 				
 //				서버가 클라이언트에게 메시지를 보냄.

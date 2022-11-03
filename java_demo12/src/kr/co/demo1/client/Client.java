@@ -47,7 +47,7 @@ public class Client {
 				dSocket.receive(recvPacket);
 				
 //				메시지를 받으면 출력
-				String recv = new String(recvPacket.getData(), 0, recvPacket.getData().length);
+				String recv = new String(recvPacket.getData(), 0, recvPacket.getLength());
 				System.out.println("서버 응답(echo) : " + recv);
  			}
 		} catch (UnknownHostException e) {
