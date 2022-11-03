@@ -8,6 +8,13 @@ public class Student {
 	public int classNum;
 	public int studentNum;
 	
+	public Student(String name, int year, int classNum, int studentNum) {
+		super();
+		this.name = name;
+		this.year = year;
+		this.classNum = classNum;
+		this.studentNum = studentNum;
+	}
 
 	public String getName() {
 		return name;

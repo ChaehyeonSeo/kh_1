@@ -1,9 +1,17 @@
 package kr.co.exam05;
 
+import java.util.Objects;
+
 public class Subject {
 	public String subject;
 	public double score;
 	public char grade;
+	
+	public Subject(String subject, double score) {
+		super();
+		this.subject = subject;
+		this.score = score;
+	}
 	
 	public String getSubject() {
 		return subject;
@@ -37,6 +45,24 @@ public class Subject {
 	@Override
 	public String toString() {
 		return "Subject [subject=" + subject + ", score=" + score + ", grade=" + grade + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(grade, score, subject);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Subject other = (Subject) obj;
+		return grade == other.grade && Double.doubleToLongBits(score) == Double.doubleToLongBits(other.score)
+				&& Objects.equals(subject, other.subject);
 	}
 	
 }
