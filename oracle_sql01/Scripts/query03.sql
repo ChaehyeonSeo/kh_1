@@ -1,11 +1,10 @@
-
 --- 사원 정보 테이블
 SELECT * FROM EMPLOYEES;
  --- 부서 정보 테이블
 SELECT * FROM DEPARTMENTS;
  --- 직급/직무 정보 테이블
 SELECT * FROM JOBS;
- --- 정보 테이블
+ --- 지점 정보 테이블
 SELECT * FROM LOCATIONS;
  --- 국가 정보 테이블
 SELECT * FROM COUNTRIES;
@@ -64,7 +63,9 @@ SELECT * FROM EMPLOYEES;
 /*
  *	사원 테이블에서 전화번호 형식이 XXX.XXX.XXXX에 해당하는 정보만 Record Set으로 반환되게 하세요.
  */
-SELECT * 
+SELECT EMPLOYEE_ID AS 사번
+     , FIRST_NAME || ' ' || LAST_NAME AS 이름
+     , PHONE_NUMBER AS 전화번호
   FROM EMPLOYEES
  WHERE PHONE_NUMBER LIKE '___.___.____';
 /*
