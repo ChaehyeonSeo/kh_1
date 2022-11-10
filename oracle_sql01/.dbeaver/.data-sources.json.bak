@@ -28,6 +28,67 @@
 					"@dbeaver-connection-type@": "BASIC",
 					"@dbeaver-sid-service@": "SERVICE"
 				},
+				"auth-model": "oracle_native"
+			}
+		},
+		"oracle_thin-1845a7dec05-74e72a6fb5ead074": {
+			"provider": "oracle",
+			"driver": "oracle_thin",
+			"name": "Local_Oracle",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "localhost",
+				"port": "1521",
+				"database": "XEPDB1",
+				"url": "jdbc:oracle:thin:@//localhost:1521/XEPDB1",
+				"home": "C:\\app\\user1\\product\\21c\\dbhomeXE",
+				"type": "dev",
+				"provider-properties": {
+					"show-only-one-schema@": "false",
+					"@dbeaver-check-schema-content@": "false",
+					"@dbeaver-always-show-dba@": "false",
+					"@dbeaver-always-use-dba-views@": "false",
+					"@dbeaver-meta-use-sys-schema@": "false",
+					"@dbeaver-meta-use-simple-constraints@": "false",
+					"@dbeaver-use-rule-hint@": "false",
+					"@dbeaver-use-meta-optimizer@": "true",
+					"@dbeaver-meta-use-alternative-table-query@": "false",
+					"oracle.meta-search-in-synonyms": "false",
+					"@dbeaver-connection-type@": "BASIC",
+					"@dbeaver-sid-service@": "SERVICE"
+				},
+				"auth-model": "oracle_native"
+			}
+		},
+		"oracle_thin-1845eedc681-3f659e4bc699fdd0": {
+			"provider": "oracle",
+			"driver": "oracle_thin",
+			"name": "XEPDB1",
+			"save-password": true,
+			"read-only": false,
+			"virtual-model-id": "oracle_thin-1845eecdbd1-560dc161ede61079",
+			"configuration": {
+				"host": "localhost",
+				"port": "1521",
+				"database": "XEPDB1",
+				"url": "jdbc:oracle:thin:@//localhost:1521/XEPDB1",
+				"home": "C:\\app\\user1\\product\\21c\\dbhomeXE",
+				"type": "dev",
+				"provider-properties": {
+					"show-only-one-schema@": "false",
+					"@dbeaver-check-schema-content@": "false",
+					"@dbeaver-always-show-dba@": "false",
+					"@dbeaver-always-use-dba-views@": "false",
+					"@dbeaver-meta-use-sys-schema@": "false",
+					"@dbeaver-meta-use-simple-constraints@": "false",
+					"@dbeaver-use-rule-hint@": "false",
+					"@dbeaver-use-meta-optimizer@": "true",
+					"@dbeaver-meta-use-alternative-table-query@": "false",
+					"oracle.meta-search-in-synonyms": "false",
+					"@dbeaver-connection-type@": "BASIC",
+					"@dbeaver-sid-service@": "SERVICE"
+				},
 				"auth-model": "oracle_native",
 				"handlers": {}
 			}
