@@ -155,3 +155,83 @@ SELECT TO_DATE(20221111)
 	 , TO_DATE('2022.11.11')
 	 , TO_DATE('2022년 11월 11일', 'YYYY"년" MM"월" DD"일"')
   FROM DUAL;
+  
+/*
+ *	NVL 함수 : NULL 데이터를 다른 값으로 변환
+ */
+SELECT COMMISSION_PCT
+	 , NVL(COMMISSION_PCT, 0)
+  FROM EMPLOYEES;
+  
+/*
+ *	DECODE 함수 : 조건에 따라 사용하는 값을 변환
+ *	DECODE(컬럼값, 조건1, 반환1, 조건2, 반환2, ..., 디폴트)
+ *	디폴트 없고 해당 조건 없으면 NULL
+ */
+SELECT DECODE(REGION_ID, 1, '유럽', 2, '아메리카', '기타')
+  FROM REGIONS;
+  
+/*
+ *	CASE WHEN <조건식> THEN <반환값>
+ *		 WHEN < ...  > THEN < ...  >
+ *			...
+ *		 ELSE <반환값>	-> 생략 가능
+ *	END
+ */
+SELECT EMPLOYEE_ID 사번
+	 , FIRST_NAME || ' ' || LAST_NAME AS 이름
+	 , SALARY
+	 , CASE WHEN SALARY >= 2000 AND SALARY < 5000 THEN '낮은급여'
+	 		WHEN SALARY >= 5000 AND SALARY < 8000 THEN '적당한급여'
+	 		WHEN SALARY >= 8000 AND SALARY < 15000 THEN '높은급여'
+	 		WHEN SALARY >= 15000 THEN '매우 높은 급여'
+	 	END AS 급여수준
+  FROM EMPLOYEES;
+  
+/*
+ *	그룹 함수
+ *		- COUNT(컬럼명 또는 *) : 조화된 Record Set의 Record 수 반환
+ *		- MAX(컬럼명) : 지정한 컬럼의 값 중 가장 큰값을 반환
+ * 		- MIN(컬럼명) : 지정한 컬럼의 값 중 가장 작은값을 반환
+ *     	- AVG(컬럼명) : 지정한 컬럼의 값들의 평균값을 반환
+ *     	- SUM(컬럼명) : 지정한 컬럼의 값들의 총합을 반환
+ */
+SELECT COUNT(*) FROM EMPLOYEES WHERE SALARY >= 10000;
+SELECT MAX(SALARY), MIN(SALARY), AVG(SALARY), SUM(SALARY) FROM EMPLOYEES;
+
+/*
+ *	GROUP BY 절
+ * 		- 그룹 함수를 사용하여 그룹에 대한 집계를 나타낼 대
+ * 		  전체 그룹이 아닌 특정 그룹에 대한 집계가 이루어질 수 있도록
+ *		  그룹을 묶어주는 역할 수행
+ */
+SELECT DEPARTMENT_ID
+	 , COUNT(DEPARTMENT_ID) 부서별총원
+	 , MAX(SALARY) 부서별최고급여액
+	 , MIN(SALARY) 부서별최저급여액
+	 , ROUND(AVG(SALARY), 2) 부서별평균급여액
+FROM EMPLOYEES
+ GROUP BY DEPARTMENT_ID;
+
+SELECT SUBSTR(PHONE_NUMBER, 1, 3) AS 전화번호앞자리
+	 , COUNT(*) AS 수량
+  FROM EMPLOYEES
+ GROUP BY SUBSTR(PHONE_NUMBER, 1, 3);
+ 
+/*
+ *	연도별 입사자 수
+ */
+SELECT EXTRACT(YEAR FROM HIRE_DATE) AS "입사 연도"
+	 , COUNT(*) AS "입사자 수"
+  FROM EMPLOYEES
+ GROUP BY EXTRACT(YEAR FROM HIRE_DATE);
+
+/*
+ *	JOB_ID별 최고급여액, 최저급여액을 구하시오.
+ *	COMMISION_PCT가 있는 경우 COMMISSION_PCT를 포함한 급여액
+ */
+SELECT JOB_ID
+	 , MAX(SALARY * (1 + NVL(COMMISSION_PCT, 0))) 최고급여액
+	 , MIN(SALARY * (1 + NVL(COMMISSION_PCT, 0))) 최저급여액
+  FROM EMPLOYEES
+ GROUP BY JOB_ID;
