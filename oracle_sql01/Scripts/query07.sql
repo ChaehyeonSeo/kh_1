@@ -1,7 +1,10 @@
 SELECT * FROM EMPLOYEES;
 
 ---	1. 1980년대 입사자, 1990년대 입사자, 2000년대 입사자의 수를 구하시오.
-
+SELECT SUBSTR(TO_CHAR(HIRE_DATE, 'YYYY'), 1, 3) AS "입사 연도"
+	 , 
+  FROM EMPLOYEES
+ GROUP BY SUBSTR;
 
 ---	2. DEPARTMENT_ID가 50, 80, 100인 부서의 평균 급여를 구하시오.
 
