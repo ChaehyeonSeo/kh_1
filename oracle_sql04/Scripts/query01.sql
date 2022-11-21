@@ -94,8 +94,37 @@ SELECT E.EMPLOYEE_ID
  *	  - JOIN하는 모든 테이블의 행들이 맵핑된 데이터의 결과로 반환한다.
  *	  - A 테이블 10행, B 테이블 5행 -> A * B = 50행
  */
+SELECT *
+  FROM EMPLOYEES E
+ CROSS JOIN DEPARTMENTS D;
+
 /*
  *	NON_EQU JOIN
- *
- *	SELF JOIN
+ *	  - 지정한 범위에 포함되는 데이터를 결합하는 형식의 JOIN
  */
+SELECT E.EMPLOYEE_ID 
+	 , E.FIRST_NAME
+	 , E.LAST_NAME
+	 , E.JOB_ID
+	 , E.SALARY
+	 , J.MIN_SALARY
+	 , J.MAX_SALARY
+  FROM EMPLOYEES E
+  JOIN JOBS J 
+    ON E.JOB_ID = J.JOB_ID 
+   AND E.SALARY BETWEEN J.MIN_SALARY AND J.MAX_SALARY;
+
+/*
+ *	SELF JOIN
+ *	  - 동일한 테이블을 결합하는 것
+ */
+SELECT E1.EMPLOYEE_ID
+	 , E1.FIRST_NAME
+	 , E1.LAST_NAME
+	 , E1.MANAGER_ID
+	 , E2.FIRST_NAME
+	 , E2.LAST_NAME
+  FROM EMPLOYEES E1
+  JOIN EMPLOYEES E2
+    ON E1.MANAGER_ID = E2.EMPLOYEE_ID;
+    
