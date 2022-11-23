@@ -1,7 +1,0 @@
-SELECT * FROM EMPLOYEES
- WHERE CONCAT(FIRST_NAME, LAST_NAME) LIKE '%' || REPLACE('son', ' ','') || '%';
-
-DELETE FROM EMPLOYEES WHERE EMPLOYEE_ID = 207;
-
-name = "홍길동"
-name = "Donald OConnell";
