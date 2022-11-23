@@ -219,36 +219,49 @@ UPDATE JOBS
  *		- 공지를 작성할 때 다음의 정보가 저장되어야 한다.
  *			번호, 제목, 내용, 작성일자, 부서ID
  */
-CREATE TABLE 부서별공지 (
-	   번호	NUMBER	
-	 , 제목	VARCHAR(10 CHAR)
-	 , 내용 VARCHAR(100 CHAR)
-	 , 작성일자 DATE
-	 , 부서ID NUMBER
-);
-CREATE TABLE 전체공지 (
-	   번호	NUMBER
-	 , 제목	VARCHAR(10 CHAR)
-	 , 내용 VARCHAR(100 CHAR)
-	 , 작성일자 DATE
-	 , 부서ID NUMBER
+CREATE TABLE NOTICE (
+	   ID NUMBER PRIMARY KEY
+	 , TITLE VARCHAR(250) NOT NULL
+	 , CONTENT VARCHAR(2000)
+	 , WRITE_DATE DATE
+	 , DEPT_ID NUMBER
 );
 
-SELECT * FROM 전체공지;
-SELECT * FROM 부서별공지;
-DROP TABLE 부서별공지;
-DROP TABLE 전체공지;
+INSERT INTO NOTICE VALUES(1, '전체 공지입니다.', '모든 부서에서 확인할 수 있습니다.', SYSDATE, 0);
+
+SELECT * FROM NOTICE;
+
 /*
  *	사내 공지 게시판 테이블을 생성 후에 다음의 공지를 추가로 작성한다.
  *		- 모든 부서마다 'XXX 부서만 확인할 수 있는 공지입니다.' 라는 메시지를 추가한다.
  */
-INSERT INTO 전체공지(번호, )
-
+INSERT INTO NOTICE (
+				   SELECT ROWNUM + 1 AS ID
+				 		, DEPARTMENT_NAME_KR || ' 부서 공지' AS TITLE
+				 		, DEPARTMENT_NAME_KR || ' 부서만 확인할 수 있는 공지입니다.' AS CONTENT
+				 		, SYSDATE AS WRITE_DATE 
+				 		, DEPARTMENT_ID AS DEPT_ID
+				     FROM DEPARTMENTS
+);
 
 /*
  *	100번 사원이 공지를 열람한다는 가정 하에 100번 사원이 소속된 부서의 공지와 전체 공지가
  *	보일 수 있는 SELECT 쿼리문을 작성하세요.
  */
+SELECT * 
+  FROM NOTICE N
+ WHERE DEPT_ID = 0 
+    OR DEPT_ID = (SELECT DEPARTMENT_ID
+ 					FROM EMPLOYEES 
+ 				   WHERE EMPLOYEE_ID = 100);
+
+SELECT * 
+  FROM NOTICE N
+  LEFT OUTER JOIN EMPLOYEES E 
+    ON N.DEPT_ID = E.DEPARTMENT_ID 
+ WHERE E.EMPLOYEE_ID = 100
+    OR N.DEPT_ID = 0;
+   
 /*
  *	공지 게시판에 중요도 기능을 추가하여 가장 중요한 공지가 가장 먼저 조회될 수 있도록
  *	테이블을 수정하도록 한다.
@@ -258,3 +271,97 @@ INSERT INTO 전체공지(번호, )
  *		- 추가한 공지 데이터를 조회할 때 중요도 순으로 조회가 될 수 있도록
  *		  SELECT 구문을 작성한다.
  */
+SELECT * FROM NOTICE ;
+ALTER TABLE NOTICE ADD ORD NUMBER(1) DEFAULT(3);
+ALTER TABLE NOTICE ADD CONSTRAINTS NOTICE_ORD_CK CHECK(ORD BETWEEN 1 AND 5);
+
+SELECT * FROM USER_CONSTRAINTS WHERE TABLE_NAME = 'NOTICE';
+
+UPDATE NOTICE 
+   SET ORD = 1
+ WHERE DEPT_ID = 0;
+
+INSERT INTO NOTICE(SELECT COUNT(*) + 1 
+				 		, '전체 공지2'
+				 		, '2번째 전체 공지입니다.'
+				 		, SYSDATE
+				 		, 0
+				 		, 2
+				 	 FROM NOTICE);
+INSERT INTO NOTICE(SELECT COUNT(*) + 1 
+				 		, '전체 공지3'
+				 		, '3번째 전체 공지입니다.'
+				 		, SYSDATE
+				 		, 0
+				 		, 3
+				 	 FROM NOTICE);
+INSERT INTO NOTICE(SELECT COUNT(*) + 1 
+				 		, '전체 공지4'
+				 		, '4번째 전체 공지입니다.'
+				 		, SYSDATE
+				 		, 0
+				 		, 4
+				 	 FROM NOTICE);
+INSERT INTO NOTICE(SELECT COUNT(*) + 1 
+				 		, '전체 공지5'
+				 		, '5번째 전체 공지입니다.'
+				 		, SYSDATE
+				 		, 0
+				 		, 5
+				 	 FROM NOTICE);
+
+SELECT * 
+  FROM NOTICE 
+ WHERE DEPT_ID = 0
+ ORDER BY ORD, ID;
+
+/*
+ *	DEPARTMENTS 테이블에서 MANAGER_ID가 없는 부서는 삭제하도록 한다.
+ *	NOTICE 테이블도 삭제할 부서의 공지사항이 삭제되도록 한다.
+ */
+DELETE FROM NOTICE 
+ WHERE DEPT_ID IN (SELECT DEPARTMENT_ID 
+ 					 FROM DEPARTMENTS 
+ 				    WHERE MANAGER_ID IS NULL);
+
+DELETE FROM DEPARTMENTS 
+ WHERE MANAGER_ID IS NULL;
+
+/*
+ *	EMPLOYEES 테이블의 COMMISSION_PCT가 NULL인 경우 0으로 수정한다.
+ */
+UPDATE EMPLOYEES
+   SET COMMISSION_PCT = 0
+ WHERE COMMISSION_PCT IS NULL;
+
+/*
+ *	EMPLOYEES 테이블의 MANAGER_ID가 없는 사원은 DEPARTMENT_ID에 해당하는 부서 정보를 찾아서
+ *	해당 부서의 MANAGER_ID 값이 EMPLOYEES 테이블의 MANAGER_ID가 되도록 수정한다.
+ */
+UPDATE EMPLOYEES E
+   SET E.MANAGER_ID = (SELECT D.MANAGER_ID
+					     FROM DEPARTMENTS D
+ 					    WHERE D.DEPARTMENT_ID IN (SELECT DEPARTMENT_ID
+  						  					        FROM EMPLOYEES 
+ 						 					       WHERE MANAGER_ID IS NULL)
+ 						  AND D.DEPARTMENT_ID = E.DEPARTMENT_ID)
+ WHERE E.MANAGER_ID IS NULL;
+
+-- 매니저 아이디 모두 삭제해서 복구
+UPDATE EMPLOYEES A
+   SET A.MANAGER_ID = (SELECT MANAGER_ID FROM EMPLOYEES AS OF TIMESTAMP(SYSTIMESTAMP-INTERVAL '30' MINUTE)
+   						WHERE A.EMPLOYEE_ID = EMPLOYEE_ID)
+ WHERE A.MANAGER_ID IS NULL;
+
+/*
+ *	EMPLOYEES 테이블의 DEPARTMENT_ID가 없는 사원은 MANAGER_ID에 해당하는 사원 정보를 찾아서
+ *	해당 사원의 DEPARTMENT_ID 값이 EMPLOYEES 테이블의 DEPARTMENT_ID가 되도록 수정한다.
+ */
+UPDATE EMPLOYEES E 
+   SET E.DEPARTMENT_ID = (SELECT D.DEPARTMENT_ID
+					  	    FROM DEPARTMENTS D
+					 	   WHERE D.MANAGER_ID IN (SELECT MANAGER_ID
+					 							    FROM EMPLOYEES 
+					 					   	       WHERE DEPARTMENT_ID IS NULL)
+					 	     AND D.MANAGER_ID = E.MANAGER_ID)
+ WHERE E.DEPARTMENT_ID IS NULL;
