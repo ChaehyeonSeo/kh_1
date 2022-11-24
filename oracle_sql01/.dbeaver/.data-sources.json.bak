@@ -64,7 +64,7 @@
 		"oracle_thin-1845eedc681-3f659e4bc699fdd0": {
 			"provider": "oracle",
 			"driver": "oracle_thin",
-			"name": "XEPDB1",
+			"name": "DEV01",
 			"save-password": true,
 			"read-only": false,
 			"virtual-model-id": "oracle_thin-1845eecdbd1-560dc161ede61079",

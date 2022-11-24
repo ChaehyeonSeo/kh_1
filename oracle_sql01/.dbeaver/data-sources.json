@@ -67,7 +67,6 @@
 			"name": "DEV01",
 			"save-password": true,
 			"read-only": false,
-			"virtual-model-id": "oracle_thin-1845eecdbd1-560dc161ede61079",
 			"configuration": {
 				"host": "localhost",
 				"port": "1521",
@@ -89,8 +88,7 @@
 					"@dbeaver-connection-type@": "BASIC",
 					"@dbeaver-sid-service@": "SERVICE"
 				},
-				"auth-model": "oracle_native",
-				"handlers": {}
+				"auth-model": "oracle_native"
 			}
 		}
 	},
@@ -99,7 +97,7 @@
 			"name": "Development",
 			"color": "255,255,255",
 			"description": "Regular development database",
-			"auto-commit": true,
+			"auto-commit": false,
 			"confirm-execute": false,
 			"confirm-data-change": false,
 			"auto-close-transactions": false
