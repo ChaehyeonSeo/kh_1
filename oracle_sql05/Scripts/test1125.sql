@@ -15,3 +15,50 @@ SELECT DEPARTMENT_ID
 HAVING AVG(SALARY) > 5000
  GROUP BY DEPARTMENT_ID
  ORDER BY DEPARTMENT_ID ASC;  
+ 
+SELECT sd_name 학생명
+	 , l_name 과목명
+	 , TO_CHAR(t_date, 'YYYY.MM.DD') 수강신청일
+  FROM trainee tr
+  	 , student st
+  	 , lesson le
+ WHERE tr.l_abbre = le.l_abbre;
+
+SELECT st.sd_name
+	 , le.l_name
+	 , TO_CHAR(tr.t_date, 'YYYY.MM.DD')
+  FROM trainee tr
+  JOIN student st
+    ON tr.sd_num = st.sd_num
+  JOIN lesson le
+    ON tr.l_abbre = le.l_abbre;
+   
+SELECT JOB_TITLE
+	 , DEPARTMENT_NAME
+	 , TO_CHAR(HIRE_DATE, 'YYYY.MM.DD')
+  FROM EMPLOYEES E
+  	 , JOBS J
+ 	 , DEPARTMENTS D
+ WHERE E.DEPARTMENT_ID = D.DEPARTMENT_ID;
+
+SELECT J.JOB_TITLE
+	 , D.DEPARTMENT_NAME
+	 , TO_CHAR(E.HIRE_DATE, 'YYYY.MM.DD')
+  FROM EMPLOYEES E
+  	 , JOBS J
+ 	 , DEPARTMENTS D
+ WHERE E.DEPARTMENT_ID = D.DEPARTMENT_ID
+   AND E.JOB_ID = J.JOB_ID;
+ 
+SELECT JOB_TITLE
+	 , DEPARTMENT_NAME
+	 , TO_CHAR(HIRE_DATE, 'YYYY.MM.DD')
+  FROM EMPLOYEES E
+  JOIN JOBS J
+    ON E.JOB_ID = J.JOB_ID
+  JOIN DEPARTMENTS D
+    ON E.DEPARTMENT_ID = D.DEPARTMENT_ID;
+ 
+SELECT * FROM EMPLOYEES;
+SELECT * FROM JOBS;
+SELECT * FROM DEPARTMENTS;
