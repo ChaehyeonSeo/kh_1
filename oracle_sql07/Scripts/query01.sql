@@ -1,0 +1,148 @@
+/*
+ *	다음의 테이블을 생성한다.
+ *		- 회원 테이블 : 회원으로 가입된 사용자의 정보가 기록되는 테이블
+ *		- 회원 요청 테이블 : 회원 가입을 위해 가입 요청을 한 사용자의 정보가 기록되는 테이블
+ *		- 접속 이력 테이블 : 로그인 및 로그아웃한 회원의 접속 시간을 기록하기 위한 테이블
+ *
+ *	1. 회원 가입 요청에는 최소한 "닉네임"과 "이메일" 정보가 필요합니다.
+ *	2. 관리자가 회원 가입을 승낙하면 회원 가입 요청 테이블의 데이터를 기반으로 
+ *	   회원 테이블의 데이터가 생성됩니다.
+ *	3. 회원 테이블의 데이터가 생성될 때 초기 패스워드로 "samplepassword"가 저장되어야 합니다.
+ *	4. 회원은 닉네임과 패스워드를 사용하여 로그인을 할 수 있으며 
+ *	   로그인 기록은 접속 이력 테이블에 저장되어야 합니다.
+ *     (로그아웃도 접속 이력 테이블에 저장되어야 합니다.)
+ *	5. 접속 이력 정보는 최소한 누가, 언제 접속했는지 또는 접속을 해제했는지 기록될 수 있어야 합니다.
+ *	6. 회원 테이블에 최근 로그인 날짜를 기록하여 로그인을 할 때마다 "n일 만에 다시 접속하셨습니다." 
+ *     또는 "n개월 만에 다시 접속하셨습니다."와 같은 정보가 생성될 수 있게 합니다.
+ */
+DROP TABLE ACCESSLOG;
+DROP TABLE MEMBERS;
+DROP TABLE REGISTER;
+
+/* 테이블 생성 */
+CREATE TABLE REGISTER (
+	   ID NUMBER PRIMARY KEY
+	 , NICKNAME VARCHAR2(25) UNIQUE
+	 , EMAIL VARCHAR2(25) UNIQUE
+	 , REQ_DATE DATE DEFAULT(SYSDATE)
+	 , ACCEPT VARCHAR2(1 CHAR) DEFAULT('P')
+	 , CONSTRAINT REGISTER_ACCEPT_DF CHECK(ACCEPT IN ('Y', 'N', 'P'))
+);
+
+CREATE SEQUENCE SEQ_REGISTER NOCACHE;
+
+CREATE TABLE MEMBERS (
+	   ID NUMBER PRIMARY KEY
+	 , NICKNAME VARCHAR2(25) UNIQUE
+	 , PASSWORD VARCHAR2(40) DEFAULT('samplepassword')
+	 , EMAIL VARCHAR2(25) UNIQUE
+	 , LASTLOGIN DATE
+);
+
+CREATE SEQUENCE SEQ_MEMBERS NOCACHE;
+	 
+CREATE TABLE ACCESSLOG (
+	   ID NUMBER PRIMARY KEY
+	 , AID NUMBER REFERENCES MEMBERS(ID)
+	 , NICKNAME VARCHAR2(25)
+	 , INLOG DATE
+	 , OUTLOG DATE
+);	 
+
+CREATE SEQUENCE SEQ_ACCESSLOG NOCACHE;
+	   
+/* 회원가입 요청 데이터 저장 */
+INSERT INTO REGISTER(ID, NICKNAME, EMAIL) VALUES(SEQ_REGISTER.NEXTVAL, 'silkstring', 'why612@naver.com');
+INSERT INTO REGISTER(ID, NICKNAME, EMAIL) VALUES(SEQ_REGISTER.NEXTVAL, 'KH123', 'KH123@naver.com');
+INSERT INTO REGISTER(ID, NICKNAME, EMAIL) VALUES(SEQ_REGISTER.NEXTVAL, 'LULU', 'LULU@naver.com');
+INSERT INTO REGISTER(ID, NICKNAME, EMAIL) VALUES(SEQ_REGISTER.NEXTVAL, 'LALA', 'LALA@naver.com');
+SELECT * FROM REGISTER;
+
+/* 회원가입 승낙을 위한 회원요청 데이터 조회 */
+SELECT NICKNAME
+	 , EMAIL
+	 , REQ_DATE
+	 , ACCEPT
+  FROM REGISTER
+ WHERE ACCEPT = 'P';
+ 
+/* 회원가입 승낙 처리 */
+CREATE OR REPLACE PROCEDURE PROC_ACCEPT(
+	   aNICKNAME IN VARCHAR2
+	 , aEMAIL IN VARCHAR2)
+IS 
+BEGIN 
+	UPDATE REGISTER
+	   SET ACCEPT = 'Y'
+	 WHERE NICKNAME = aNICKNAME
+	   AND EMAIL = aEMAIL
+	   AND (ACCEPT = 'P' OR ACCEPT = 'N');
+	  
+	INSERT INTO MEMBERS(ID, NICKNAME, EMAIL) VALUES(SEQ_MEMBERS.NEXTVAL, aNICKNAME, aEMAIL);
+	  
+	COMMIT;
+END;
+SELECT * FROM USER_ERRORS;
+
+BEGIN
+	PROC_ACCEPT('silkstring', 'why612@naver.com');
+END;
+SELECT * FROM MEMBERS;
+
+/* 로그인 처리 */
+CREATE OR REPLACE PROCEDURE PROC_LOGIN(
+	   lNICKNAME IN VARCHAR2
+	 , lPASSWORD IN VARCHAR2)
+IS	
+	rPASSWORD VARCHAR2(40);
+BEGIN 
+	SELECT PASSWORD INTO rPASSWORD FROM MEMBERS WHERE NICKNAME = lNICKNAME;
+	IF rPASSWORD = lPASSWORD THEN
+		INSERT INTO ACCESSLOG(ID, AID, NICKNAME, INLOG) 
+					VALUES(SEQ_ACCESSLOG.NEXTVAL, (SELECT ID
+													 FROM MEMBERS 
+													WHERE MEMBERS.NICKNAME = lNICKNAME), lNICKNAME, SYSDATE);
+		
+		UPDATE MEMBERS
+		   SET LASTLOGIN = SYSDATE 
+		 WHERE NICKNAME = lNICKNAME;
+	END IF;
+	
+	COMMIT;
+END;
+SELECT * FROM USER_ERRORS;
+
+BEGIN
+	PROC_LOGIN('silkstring', 'samplepassword');
+END;
+
+SELECT * FROM ACCESSLOG;
+SELECT * FROM MEMBERS;
+
+/* 로그아웃 처리 */
+CREATE OR REPLACE PROCEDURE PROC_LOGOUT(
+	   lNICKNAME IN VARCHAR2)
+IS	
+BEGIN 
+	UPDATE ACCESSLOG
+	   SET OUTLOG = SYSDATE 
+	 WHERE NICKNAME = lNICKNAME AND OUTLOG IS NULL;
+
+	COMMIT;
+END;
+SELECT * FROM USER_ERRORS;
+
+BEGIN
+	PROC_LOGOUT('silkstring');
+END;
+SELECT * FROM ACCESSLOG;
+
+/*	
+ *	6. 회원 테이블에 최근 로그인 날짜를 기록하여 로그인을 할 때마다 "n일 만에 다시 접속하셨습니다." 
+ *     또는 "n개월 만에 다시 접속하셨습니다."와 같은 정보가 생성될 수 있게 합니다.
+ */
+
+
+
+
+
