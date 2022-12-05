@@ -15,6 +15,8 @@ public class AccountVO {
     private String email;
     private char isAllowed;
     private Date reqDate;
+    private String password;
+    private Date loginDate;
     
     
 	public int getId() {
@@ -22,6 +24,14 @@ public class AccountVO {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+		
 	}
 	
 	public String getNickname() {
@@ -52,6 +62,13 @@ public class AccountVO {
 		this.reqDate = reqDate;
 	}
 	
+	public Date getLoginDate() {
+		return loginDate;
+	}
+	public void setLoginDate(Date loginDate) {
+		this.loginDate = loginDate;
+	}
+	
 	
 	@Override
 	public int hashCode() {
@@ -73,6 +90,7 @@ public class AccountVO {
 	@Override
 	public String toString() {
 		return "AccountVO [id=" + id + ", nickname=" + nickname + ", email=" + email + ", isAllowed=" + isAllowed
-				+ ", reqDate=" + reqDate + "]";
+				+ ", reqDate=" + reqDate + ", password=" + password + ", loginDate=" + loginDate + "]";
 	}
+	
 }

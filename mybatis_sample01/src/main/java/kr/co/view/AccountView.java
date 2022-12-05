@@ -20,4 +20,8 @@ public class AccountView {
 		}
 	}
 
+	public void message(String msg) {
+		System.out.println(msg);
+	}
+
 }
