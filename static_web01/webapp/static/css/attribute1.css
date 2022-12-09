@@ -1,0 +1,48 @@
+.fs1 {
+    font-size: 0.5em, 
+}
+
+.fw1 {
+    font-weight: bold;
+}
+
+.fs2 {
+    font-style: italic;
+}
+
+.ff1 {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.c1 {
+    color: rgba(63, 61, 172, 0.7);
+}
+
+.td1 a {
+    text-decoration: none;
+}
+
+.ts1 {
+    /*          가로 세로 번짐 색상 */
+    text-shadow: 2px 2px 3px gray;
+}
+
+.ta1-left {
+    text-align: left; /* start = left */
+}
+
+.ta1-right {
+    text-align: right; /* end = right */
+}
+
+.ta1-center {
+    text-align: center;
+}
+
+.ta1-justify {
+    text-align: justify;
+}
+
+.lh1 {
+    line-height: 20px;
+}
