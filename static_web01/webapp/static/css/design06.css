@@ -1,0 +1,153 @@
+/* 모든 태그의 스타일 속성을 초기화 */
+* {
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    font-family: 'MalgunGothic';
+}
+body {
+    background-color: rgb(245, 246, 247);
+}
+.container-center {
+    width: 450px;
+    margin-top: 45px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.logo-title {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.logo-title .logo {
+    font-size: 48px;
+    font-family: "MalgunGothic";
+    font-weight: bold;
+    color: rgb(0, 200, 80);
+}
+.input-form-group {
+    margin-bottom: 1em;
+}
+.input-group {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 0.6em;
+}
+.input-group label,
+.input-group input,
+.input-group select {
+    border-style: none;
+    width: 100%;
+}
+.input-form-group label {
+    font-size: 0.9em;
+    font-weight: bold;
+    letter-spacing: 0.03em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.input-icon {
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+    padding: 0.7em;
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(218, 218, 218);
+}
+.input-form input {
+    display: inline-block;
+    border-style: none;
+    outline-style: none;
+}
+.input-icon .input-form {
+    float: left;
+    width: 80%;
+    border-style: none;
+}
+.input-icon span {
+    display: inline-block;
+    background-color: white;
+    color: rgb(142, 142, 142);
+    width: 20%;
+    vertical-align: middle;
+    text-align: end;
+    font-weight: lighter;
+}
+.input-icon input {
+    display: inline-block;
+    border-style: none;
+    outline-style: none;
+}
+
+.input-inline input,
+.input-inline select,
+.input-inline button {
+    display: inline-block;
+    width: 32.5%;
+    height: 50px;
+    padding: 0.7em;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(218, 218, 218);
+    outline-style: none;
+}
+.country {
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+    padding: 0.7em;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(218, 218, 218);
+}
+.input-inline .inline-w2 {
+    width: 70%;
+}
+.input-inline button {
+    float: right;
+    width: 28%;
+    font-size: 1em;
+}
+.disabled {
+    background-color: rgb(245, 246, 247);
+    border-style: none;
+
+}
+button {
+    display: inline-block;
+    height: 50px;
+    background-color: rgb(3, 199, 90);
+    color: white;
+    font-weight: bold;
+    display: block;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    border-color: rgb(3, 183, 83);
+    border-style: solid;
+    border-width: 1px;
+}
+
+.button-form {
+    padding-top: 0.3em;
+    padding-bottom: 1.5em;
+}
+.button-form button {
+    width: 100%;
+    font-size: 1.1em;
+}
+footer {
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    font-size: 0.7em;
+    line-height: 200%;
+}
+footer a {
+    text-decoration: none;
+    color: rgb(88, 91, 88);
+    margin: 0.3em;
+}
