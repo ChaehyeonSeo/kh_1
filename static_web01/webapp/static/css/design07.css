@@ -1,0 +1,243 @@
+* {
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Material Symbols Outlined';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/materialsymbolsoutlined/v75/kJF1BvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oDMzByHX9rA6RzaxHMPdY43zj-jCxv3fzvRNU22ZXGJpEpjC_1n-q_4MrImHCIJIZrDCvHOej.woff2) format('woff2');
+}
+.icon {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+[type=radio] ~ .hidden-context {
+    display: none;
+}
+[type=radio]:checked ~ .hidden-context {
+    display: block;
+}
+
+body {
+    min-width: 1020px;
+    max-width: 100%;
+}
+
+.dark-head {
+    box-sizing: border-box;
+    height: 30px;
+    background-color: rgb(51, 57, 71);
+}
+.left-head {
+    float: left;
+    font-size: 12px;
+    padding-left: 30px;
+    margin-top: 6px;
+}
+.left-head .my-info {
+    color: white;
+    text-decoration: none;
+    padding-left: 1px;
+}
+.right-head {
+    float: right;
+    padding-right: 20px;
+}
+.float-clear {
+    clear: both;
+}
+.btn {
+    border-radius: 2px;
+    padding: 1px 5px 1px 5px;
+    border-style: solid;
+    border-width: 1px;
+}
+.btn-dark {
+    background-color: rgb(63, 68, 82);
+    border-color: rgb(41, 46, 56);
+    color: white;
+}
+.right-head .btn {
+    vertical-align: top;
+    margin-top: 5px;
+}
+.right-head .icon {
+    vertical-align: top;
+    margin-top: 4px;
+}
+.btn-sm {
+    font-size: 12px;
+}
+.icon-sm {
+    font-size: 22px;
+}
+.icon-light {
+    color: rgb(186, 188, 193);
+}
+.right-head .icon-light:hover {
+    color: white;
+}
+.icon-btn {
+    cursor: pointer;
+}
+
+.green-head {
+    height: 60px;
+    background-color: rgb(65, 191, 5);
+    font-size: 15px;
+    color: white;
+    border-top: solid;
+    border-bottom: solid;
+    border-color: black;
+    border-width: 1px;
+}
+.find-group {
+    width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.find-tab {
+    float: left;
+    width: 250px;
+}
+.find-tab * {
+    vertical-align: middle;
+}
+.find-tab .icon {
+    padding-top: 12px;
+}
+.icon-lg {
+    font-size: 28px;
+}
+.find-tab .tab-link {
+    display: inline-block;
+    padding-top: 17px;
+    text-decoration: none;
+    font-size: 15px;
+    color: white;
+    border-style: none;
+}
+.find-tab .active {
+    color: yellow;
+}
+.container {
+    padding-top: 30px;
+}
+.container .content {
+    width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.content-header {
+    margin-bottom: 10px;
+}
+.content-header .content-name {
+    border-style: none;
+    border-bottom: solid;
+    border-width: 2px;
+    font-weight: bold;
+    padding-bottom: 3px;
+}
+.content-name::after {
+    position: absolute;
+    content: "";
+    width: calc(650px - 86px);
+    border-bottom: solid;
+    border-color: lightgray;
+    border-width: 2px;
+    padding-top: 21px;
+    padding-bottom: 3px;
+}
+.section-find {
+    padding-top: 5px;
+}
+.section-find .description {
+    font-size: 13px;
+}
+.section-find .qualify {
+    display: block;
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightgray;
+    width: 650px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 30px;
+}
+.qualify label {
+    font-size: 14px;
+    font-weight: bold;
+}
+.hidden-context .description {
+    margin-top: 5px;
+    margin-left: 20px;
+    font-size: 11px;
+}
+.hidden-context .input-group {
+    margin: 20px
+}
+
+.btn-center {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+.btn-light {
+    background-color: rgb(252,252,252);
+    border-color: rgb(193, 193, 193);
+}
+.btn-md {
+    padding: 7px 15px 7px 15px;
+    font-size: 12px;
+}
+
+.section-question {
+    margin-top: 30px;
+    margin-bottom: 150px;
+}
+
+#wrapper {
+    min-height: calc(100% - 30px);
+}
+footer {
+    height: 30px;
+    /* position: absolute; */
+    bottom: 0;
+    min-width: 1020px;
+    width: 100%;
+}
+.foot {
+    padding-left: 30px;
+    padding-right: 50px;
+    background-color: rgb(52, 56, 63);
+    color: rgb(175, 175, 175);
+    font-size: 8px;
+}
+footer a {
+    text-decoration: none;
+    color: rgb(175, 175, 175);
+}
+.left-foot {
+    float: left;
+}
+.center-foot {
+    margin-left: auto;
+    margin-right: auto;
+}
+.right-foot {
+    float: right;
+}
