@@ -1,34 +1,95 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="author" value="작성자">
-    <meta name="keywords" value="이 페이지를 검색할 때의 키워드 정보">
-    <meta name="generator" value="이 페이지를 만든 프로그램 및 도구">
-
-    <!-- 브라우저에 표기할 페이지 제목 -->
-    <title>브라우저에 제목 표기</title>
-
-    <!-- 브라우저에 표기할 아이콘 -->           
-    <link type="image/jpeg" rel="icon" href="/static/img/icon.jpeg">
-                                    <!-- 내부 서버(현재 접속 서버) 파일-->
-    <!-- 외부 CSS 파일 불러오기 -->
-    <link type="text/css" rel="stylesheet" href="http://172.21.0.1:5500/static/css/index.css">
-                                                <!-- 외부 서버 파일 -->
-    <!-- 외부 JavaScript 파일 불러오기 -->
-    <script type="text/javascript" src="/static/js/index.js"></script>
-
-    <style type="text/css">
-        /* HTML에 직접 작성한 내부 CSS */
-        body { background-color: gray; }
-    </style>
-    <script type="text/javascript">
-        window.onload = function() {
-            alert("JavaScript Run!!");
-        };
-    </script>
+    <title>포트폴리오 문제</title>
+    <link rel="stylesheet" type="text/css" href="/static_web01/webapp/static/css/style.css">
 </head>
 <body>
-    <h1> Hello HTML5</h1>
+    <h1>포트폴리오 문제</h1>
+    <hr>
+    <div>
+        <form action="insert.no" method="post">
+            <fieldset>
+                <legend>공지사항 작성하기</legend>
+                <div class="title">
+                    <span class="subject">
+                        제목 
+                    </span>
+                    <input class="txtfield" type="text" name="title" placeholder="제목을 입력하시오." required>
+                </div>
+                <div class="content">
+                    <span class="subject">
+                        내용 
+                    </span>
+                    <input class="txtfield" type="text" name="content" placeholder="내용을 입력하시오." required>
+                </div>
+                <div class="file">
+                    <span class="subject">
+                        첨부파일
+                    </span>
+                    <input type="button" name="uploadFile" value="파일 선택">
+                    <span class="descript">선택된 파일 없음</span>
+                </div>
+                <div class="btn">
+                    <input type="submit" value="작성하기">
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <hr>
+    <table class="tb">
+        <tr class="head" align="center">
+            <td>번호</td>
+            <td colspan="2">제목</td>
+            <td width="100px">작성자</td>
+            <td width="100px">작성일</td>
+            <td>조회수</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td width="350px">공지사항 제목 9</td>
+            <td><input type="button" value="바로가기"></td>
+            <td>user01</td>
+            <td>2021-03-29</td>
+            <td>34</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>공지사항 제목 6</td>
+            <td><input type="button" value="바로가기"></td>
+            <td>answ445</td>
+            <td>2021-03-12</td>
+            <td>67</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>공지사항 제목 3</td>
+            <td><input type="button" value="바로가기"></td>
+            <td>testg12</td>
+            <td>2021-03-01</td>
+            <td>98</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>공지사항 제목 2</td>
+            <td><input type="button" value="바로가기"></td>
+            <td>palwe3</td>
+            <td>2021-01-02</td>
+            <td>85</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>공지사항 제목 1</td>
+            <td><input type="button" value="바로가기"></td>
+            <td>xml23</td>
+            <td>2020-12-24</td>
+            <td>124</td>
+        </tr>
+        <tr class="foot" align="center">
+            <td colspan="4">전체공지사항 갯수</td>
+            <td colspan="2">5개</td>
+        </tr>
+    </table>
 </body>
 </html>

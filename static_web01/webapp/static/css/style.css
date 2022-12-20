@@ -1,0 +1,48 @@
+fieldset{
+    width: 700px;
+}
+fieldset *{
+    margin: 1px
+}
+
+.subject {
+    font-size: 13px;
+    font-weight: bold;
+    margin-left: 13px;
+}
+.file .subject{
+    margin-left: 0px;
+}
+.descript {
+    font-size: 13px;
+}
+.txtfield {
+    width: 230px;
+    margin-left: 14px;
+}
+.content .txtfield {
+    height: 150px;
+}
+.btn {
+    margin-top: 15px;
+    margin-left: 120px;
+}
+
+.tb {
+    margin-top: 20px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+}
+.tb td {
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+}
+.tb tr {
+    background-color: blanchedalmond;
+}
+.tb .head,
+.tb .foot{
+    background-color: salmon;
+}
