@@ -35,32 +35,32 @@ function addRow(form) {
         작성일 : new Date() 객체 사용하여 현재 날짜
         조회수 : 기본값 0
     */
-    var inputTitle = form.title.value;
-    var inputWriter = form.writer.value;
+    var tbody = document.getElementById("table").lastElementChild;
     var today = new Date();
     var year = today.getFullYear();
     var month = parseInt(today.getMonth())+1;
     var day = today.getDate();
 
-    var tbody = document.getElementById("table");
-    var tr = document.createElement("tr");
-    var td1 = document.createElement("td");
-    var td2 = document.createElement("td");
-    var td3 = document.createElement("td");
-    var td4 = document.createElement("td");
-    var td5 = document.createElement("td");
-    td1.innerText = tbody.rows.length;
-    td2.innerText = inputTitle;
-    td3.innerText = inputWriter;
-    td4.innerText = year + "-" + month + "-" + day;
-    td5.innerText = 0;
-    tr.append(td1);
-    tr.append(td2);
-    tr.append(td3);
-    tr.append(td4);
-    tr.append(td5);
+    var tr = createTableRow(5);
+    tr.children[0].innerText = tbody.children.length + 1;
+    tr.children[1].innerText = setAndClear(form.title);
+    tr.children[2].innerText = setAndClear(form.writer);
+    tr.children[3].innerText = [year, month, day].join("-");
+    tr.children[4].innerText = 0;
     tbody.append(tr);
+}
 
-    form.title.value = "";
-    form.writer.value = "";
+function setAndClear(inputElement) {
+    var value = inputElement.value;
+    inputElement.value = "";
+    return value;
+}
+
+function createTableRow(columnCount) {
+    var row = document.createElement("tr");
+    for(let idx = 0; idx < columnCount; idx++) {
+        let column = document.createElement("td");
+        row.append(column);
+    }
+    return row;
 }
