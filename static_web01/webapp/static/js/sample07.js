@@ -13,7 +13,6 @@ function validCheck(form) {
     var isValid = true;
     if(form.username.nextElementSibling !== null) {
         form.username.nextElementSibling.remove();
-        form.username.style.borderColor = "black";
     }
     if(form.username.value.length < 6) {
         var error = createErrorMessage("아이디는 6자리 이상 입력하십시오.");
@@ -23,8 +22,6 @@ function validCheck(form) {
     }
     if(form.password.nextElementSibling !== null) {
         form.password.nextElementSibling.remove();
-        form.password.style.borderColor = "black";
-
     }
     if(form.password.value.length < 4) {
         var error = createErrorMessage("패스워드는 4자리 이상 입력하십시오.");
@@ -34,8 +31,6 @@ function validCheck(form) {
     }
     if(form.passwordCheck.nextElementSibling !== null) {
         form.passwordCheck.nextElementSibling.remove();
-        form.passwordCheck.style.borderColor = "black";
-
     }
     if(form.password.value !== form.passwordCheck.value) {
         var error = createErrorMessage("패스워드를 확인하십시오.");
@@ -47,11 +42,13 @@ function validCheck(form) {
 }
 function errorInput(element) {
     element.value = "";
-    element.style.borderColor = "red";
-    element.style.borderStyle = "solid";
+    // element.style.borderColor = "red";
+    // element.style.borderStyle = "solid";
+    element.classList.add("is-invalid");
 }
 function createErrorMessage(message) {
-    var span = document.createElement("span");
-    span.innerText = message;
-    return span;
+    var div = document.createElement("div");
+    div.className = "invalid-feedback";
+    div.innerText = message;
+    return div;
 }
