@@ -83,10 +83,8 @@ function validCheck(form) {
     var passwordCheckValid = form.passwordCheck.getAttribute("is-valid") === "true" ? true : false;
  
     if(userNameValid && passwordValid && passwordCheckValid) {
-        alert("true: " + userNameValid);
         return true;
     } else {
-        alert("false: " + userNameValid);
         return false;
     }
 }
