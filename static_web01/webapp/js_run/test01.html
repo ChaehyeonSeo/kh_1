@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- <button id="btn">클릭하세요</button>
+    <script>
+        var button = document.getElementById('btn');
+        button.addEventListener('click', function(){
+            console.log('버튼이 클릭되었습니다.');
+        });
+    </script> -->
+
+    <ul id="menu">
+        <li>불고기버거</li>
+        <li>치즈버거</li>
+        <li>치킨버거</li>
+    </ul>   
+    <script>
+        $("#menu").click(function(){
+            $("#menu").css('background', 'gray');
+    });
+    </script>
+
+    <button id="btn">클릭 전</button>
+    <script>
+        var button = document.getElementById('btn');
+        button.addEventListener('click', function(){
+            button.innerText = '클릭 후';
+            button.style.color = 'red';
+        });
+    </script>
+</body>
+</html>
