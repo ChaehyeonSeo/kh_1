@@ -1,0 +1,11 @@
+DROP TABLE VISIT_T;
+
+CREATE TABLE VISIT_T (
+	   nickname VARCHAR2(100CHAR)
+	 , context VARCHAR2(1000 CHAR)
+	 , createdate DATE DEFAULT(SYSDATE)
+);
+
+INSERT INTO VISIT_T VALUES('닉네임', '내용 작성', DEFAULT);
+
+SELECT NICKNAME, context, createdate FROM VISIT_T;
