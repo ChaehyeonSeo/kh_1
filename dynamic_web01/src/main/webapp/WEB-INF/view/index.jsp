@@ -26,7 +26,7 @@
 	</p>
 	<ul>
 	<% for(int i = 0; i < (Integer)request.getAttribute("iCnt"); i++) { %>
-	    <li><%=i %>번재 목록</li>
+	    <li><%=i %>번째 목록</li>
 	<% } %>
 	</ul>
 </body>
